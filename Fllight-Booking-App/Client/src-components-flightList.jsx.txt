@@ -1,0 +1,15 @@
+export default function FlightList({ flights, onBook }) {
+  return (
+    <div className="grid gap-4 mt-4">
+      {flights.map((flight) => (
+        <div key={flight._id} className="p-4 border rounded shadow">
+          <h2 className="text-lg font-semibold">{flight.airline}</h2>
+          <p>{flight.from} → {flight.to}</p>
+          <p>Date: {flight.date}</p>
+          <p>₹{flight.price}</p>
+          <button onClick={() => onBook(flight)} className="mt-2 px-3 py-1 bg-green-500 text-white">Book</button>
+        </div>
+      ))}
+    </div>
+  );
+}

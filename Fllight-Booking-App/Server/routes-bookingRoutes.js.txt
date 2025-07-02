@@ -1,0 +1,16 @@
+import express from "express";
+import Booking from "../models/Booking.js";
+
+const router = express.Router();
+
+router.post("/", async (req, res) => {
+  const { userId, flightId } = req.body;
+  try {
+    const booking = await Booking.create({ userId, flightId });
+    res.status(201).json(booking);
+  } catch (err) {
+    res.status(500).json({ error: "Booking failed" });
+  }
+});
+
+export default router;

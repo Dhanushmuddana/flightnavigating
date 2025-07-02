@@ -1,0 +1,42 @@
+const API = "http://localhost:5000/api";
+
+export async function login(email, password) {
+  const res = await fetch(`${API}/auth/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
+  return await res.json();
+}
+
+export async function register(name, email, password) {
+  const res = await fetch(`${API}/auth/register`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, email, password }),
+  });
+  return await res.json();
+}
+
+export async function searchFlights(from, to, date) {
+  const res = await fetch(`${API}/flights?from=${from}&to=${to}&date=${date}`);
+  return await res.json();
+}
+
+export async function bookFlight(userId, flightId) {
+  const res = await fetch(`${API}/book`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ userId, flightId }),
+  });
+  return await res.json();
+}
+
+export async function pay(amount, bookingId) {
+  const res = await fetch(`${API}/pay`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ amount, bookingId }),
+  });
+  return await res.json();
+}
